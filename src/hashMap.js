@@ -10,11 +10,13 @@ export default function hashMap() {
      *  loadFactor - ratio of the number of elements stored in the map to the number of 
      *               available buckets
      *  capacity - number of buckets
+     *  size - number of elements
      *  hashMap - stores the key, value pairs
      * 
     */
     let loadFactor = .75;
     let capacity = 16;
+    let size = 0;
     let hashMap = [];
 
     /*
