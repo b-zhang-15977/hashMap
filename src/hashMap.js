@@ -24,7 +24,16 @@ export default function hashMap() {
     /*
      * Produces a haseCode from key.
      */
-    const hash = (key) => { }
+    const hash = (key) => { 
+        let hashCode = 0;
+
+        const primeNumber = 31;
+        for (let i = 0; i < key.length; i++) {
+            hashCode = primeNumber * hashCode + key.charCodeAt(i);
+        }
+
+        return hashCode;        
+    }
 
     /*
      * Create a new key, value pair, and adds it to the map.
