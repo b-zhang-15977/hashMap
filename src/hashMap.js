@@ -1,7 +1,7 @@
 import Pair from "./Pair";
 
 /**
- * hashMap should be an object which implements 
+ * hashMap should be an object which implements a Map data structure with hashing
  */
 
 export default function hashMap() {
