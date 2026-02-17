@@ -73,45 +73,82 @@ export default function hashMap() {
      *  Takes one argument as a key and returns the value that is assigned to this key. 
      *  If a key is not found, return null
      */
-    const get = (key) => { }
+    const get = (key) => {
+        return hashMap[hash(key)].find(pair => pair.key() === key).value();
+    }
 
     /*
      *  Takes a key as an argument and returns true or false based on whether or not the key 
      *  is in the hash map.
      */
-    const has = (key) => { }
+    const has = (key) => hashMap[hash(key)].some(pair => pair.key() === key);
 
     /*
      *  Takes a key as an argument. If the given key is in the hash map, it should remove the
      *  entry with that key and return true. If the key isn’t in the hash map, it should 
      *  return false.
      */
-    const remove = (key) => { }
+    const remove = key => {
+        const bucket = hashMap[hash(key)];
+        let removed = false;
+
+        const pos = bucket.findIndex(pair => pair.key() === key);
+        if (pos >= 0) {
+            bucket.splice(pos, 1);
+            size--;
+            removed = true;
+        }
+        return removed;
+    };
 
     /*
      *  returns the number of stored keys in the hash map.
      */    
-    const length = () => { }
+    const length = () => size;
 
     /*
      *  removes all entries in the hash map.
      */
-    const clear = () => { }
+    const clear = () => hashMap = Array.from({length: capacity}, () => []);
 
     /*
      * returns an array containing all the keys inside the hash map.
      */
-    const keys = () => { }
+    const keys = () => { 
+        const keys = [];
+        for (const bucket of hashMap) {
+            for (const pair of bucket) {
+                keys.push(pair.key());
+            }
+        }
+        return keys;
+    }
     
     /*
      *  returns an array containing all the values.
      */
-    const values = () => { }
+    const values = () => { 
+        const values = [];
+        for (const bucket of hashMap) {
+            for (const pair of bucket) {
+                values.push(pair.value());
+            }
+        }
+        return values;
+    }
 
     /*
      * returns an array that contains each key, value pair.
      */
-    const entries = () => { }
+    const entries = () => { 
+        const entries = [];
+        for (const bucket of hashMap) {
+            for (const pair of bucket) {
+                entries.push(pair);
+            }
+        }
+        return entries;
+    }
 
     return {hash, set, get, has, remove, length, clear, keys, values, entries}
 }
