@@ -38,7 +38,7 @@ export default function hashMap() {
     }
 
     /*
-     * Create a new key, value pair, and adds it to the map.
+     * Create a new key, value pair and adds it to the map.
      */
     const set = (key, value) => { }
 
@@ -62,12 +62,12 @@ export default function hashMap() {
     const remove = (key) => { }
 
     /*
-     * length() returns the number of stored keys in the hash map.
+     *  returns the number of stored keys in the hash map.
      */    
     const length = () => { }
 
     /*
-     * clear() removes all entries in the hash map.
+     *  removes all entries in the hash map.
      */
     const clear = () => { }
 
