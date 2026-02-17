@@ -40,8 +40,35 @@ export default function hashMap() {
     /*
      * Create a new key, value pair and adds it to the map.
      */
-    const set = (key, value) => { }
+    const set = (key, value) => { 
+        const bucket = hashMap[hash(key)];
+        const index = bucket.findIndex(key);
 
+        // replaces pair if pair already exists, otherwise adds it to bucket
+        if (index > 0) {
+            bucket[index] = Pair(key, value);
+        } else {
+            const pair = Pair(key, value);
+            bucket.push(pair);
+            size++;
+        }
+
+        // resizes hashMap if the load factor reaches .75
+        if ((size / capacity) > loadFactor) {
+            capacity = capacity * 2;
+            let temp = Array.from({length: capacity}, () => []);
+
+            for (const bucket of hashMap) {
+                for (const pair of bucket) {
+                    const newIndex = hash(pair.key());
+                    temp[newIndex].push(pair);
+                }
+            }
+
+            hashMap = temp;
+        }
+    }
+ 
     /*
      *  Takes one argument as a key and returns the value that is assigned to this key. 
      *  If a key is not found, return null
