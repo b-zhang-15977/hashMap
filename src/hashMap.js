@@ -17,7 +17,7 @@ export default function hashMap() {
     let loadFactor = .75;
     let capacity = 16;
     let size = 0;
-    let hashMap = [];
+    let hashMap = Array.from({length: capacity}, () => []);
 
     /*
      * Class methods
